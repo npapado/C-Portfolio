@@ -1,24 +1,21 @@
-
 NAME    = ft_ls
 CC      = cc
 CFLAGS  = -Wall -Wextra -Werror
-INCLUDES = -I include
-SRC     = src/main.c src/args.c src/vec.c src/path.c src/read.c src/sort.c src/print.c
+RM      = rm -f
+
+SRC     = main.c parse.c vec.c collect.c sort.c print.c recurse.c
 OBJ     = $(SRC:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) -o $(NAME)
-
-%.o: %.c include/ft_ls.h
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 clean:
-	rm -f $(OBJ)
+	$(RM) $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	$(RM) $(NAME)
 
 re: fclean all
 
